@@ -1,13 +1,13 @@
 function BookLookUp(service){
     this.service=service
 
-    this.AmazonServiceGetBookDetail=(ISBN)=>{
+    this.search=(ISBN)=>{
         let result=service(ISBN)
         return result
     }
 }
 
-test('Get data book with Call service AmazonService with paramiter (ISBN)',()=>{
+test('Get data book call function search(ISBN) with AmazonService',()=>{
     const output={
         title:"banana",
         image:"img1.jpg",
@@ -17,7 +17,7 @@ test('Get data book with Call service AmazonService with paramiter (ISBN)',()=>{
     const AmazonService=jest.fn(input)
         .mockReturnValue(output)
     let app=new BookLookUp(AmazonService)
-    let result=app.AmazonServiceGetBookDetail(input)
+    let result=app.search(input)
 
     expect(result).toEqual(output)
     expect(AmazonService).toBeCalled()
